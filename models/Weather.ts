@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const WeatherSchema = new mongoose.Schema({
-    zip: Number,
     coord: {
         lon: Number,
         lat: Number
