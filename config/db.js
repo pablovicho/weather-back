@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
 export default function connect(user, pw) {
-    const uri = `mongodb+srv://${user}:${pw}@cluster0.mongodb.net/?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${user}:${pw}@cluster0.qp9dsef.mongodb.net/?retryWrites=true&w=majority`;
     // Create a MongoClient with a MongoClientOptions object to set the Stable API version
     const client = new MongoClient(uri, {
       serverApi: {

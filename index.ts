@@ -1,22 +1,26 @@
 import type { Request, Response } from "express";
 import express from "express";
-import weather from "api/weather.js";
-import connect from "config/db.js";
-import dotenv from 'dotenv';
+import likes from "./api/likes.js";
+import weather from "./api/weather";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 
-dotenv.config({ path: '.env.local' });
+dotenv.config({ path: ".env.local" });
 
 const app = express();
 const port = process.env.PORT || 8080;
 app.use(express.json());
-app.use("/api", weather);
+app.get("/api", weather);
+// app.use("/likes", likes);
+app.get("/likes", likes);
 
 app.get("/", (req: Request, res: Response) => {
-res.send("Api running");
+  res.send("Api running");
 });
 
-connect(process.env.USER2, process.env.DB_PW);
-
-app.listen(port, () => {
-console.log(`Listening on port ${port}...`);
-});
+mongoose
+  .connect(process.env.URI!, {dbName: "weather"})
+  .then(() =>
+    app.listen(port, () => console.log(`Server running on port: ${port}`))
+  )
+  .catch((error) => console.log(error.message));
