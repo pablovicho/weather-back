@@ -42,6 +42,8 @@ interface IWeather {
     id: number,
     name: string,
     cod: number,
+    likes: number,
+    date: string
 }
 
 const WeatherSchema: Schema = new mongoose.Schema({
@@ -87,6 +89,8 @@ const WeatherSchema: Schema = new mongoose.Schema({
     id: { type: Number },
     name: { type: String },
     cod: { type: Number },
+    likes: { type: Number },
+    date: { type: String }
 });
 
 export default mongoose.model<IWeather & Document>('Weather', WeatherSchema);
