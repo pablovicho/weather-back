@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const LikesSchema = new mongoose.Schema({
+    id: Number,
     date: Date,
     likes: Number,
 });
